@@ -1,67 +1,67 @@
-    version: '1'
+version: '1'
 
-    networks:
-        bibbox-default-network:
-          external: true
-
-    services:
-
-      §§INSTANCE-container-frontend:
-        image: heartexlabs/label-studio:1.6.0 # dockerimage + version
-        container_name:  §§INSTANCE-myownapp
-        restart: unless-stopped
 networks:
-          - bibbox-default-network
-        links:
-          - §§INSTANCE-container2:container2
-        ports:
-          - "80:80"
-        depends_on:
-          - §§INSTANCE-labelstudioapp
-        volumes: 
-          - ./data/container/app-data:/app-data
-        proxy:
-          TYPE: PRIMARY
-          URLPREFIX: §§INSTANCE
-          TEMPLATE: default
-          DISPLAYNAME: 'MY own APP'  
-	  §§INSTANCE-labelstudioapp:
-		image:  heartexlabs/label-studio:1.6.0
-		container_name:  §§INSTANCE-labelstudioapp
-        restart: unless-stopped
-        networks:
-          - bibbox-default-network
-        links:
-          - §§INSTANCE-app-db:app-db
-        ports:
-          - "8000:8000"
-        depends_on:
-          - §§INSTANCE-app-db
-        volumes: 
-          - ./data/container/app-data:/app-data
-		 environment:
-		  - DJANGO_DB=default
-          - POSTGRE_NAME=postgres
-          - POSTGRE_USER=postgres
-          - POSTGRE_PASSWORD=
-          - POSTGRE_PORT=5432
-          - POSTGRE_HOST=db
-          - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
-          - JSON_LOG=1
+bibbox-default-network:
+external: true
 
-      §§INSTANCE-app-db:
-        image: postgres:11.5
-        container_name: §§INSTANCE-app-db
-        restart: unless-stopped
-        networks:
-          - bibbox-default-network
-        user: root
-        environment:
-		  - POSTGRES_HOST_AUTH_METHOD=trust
-          #- MYSQL_ROOT_PASSWORD=myverysecretpassword
-          #- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
-          #- MYSQL_USER=§§MYSQL_DATABASE_USER
-          #- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
-        volumes: 
-          - ./data/db/var/app-data:/var/app-data
+services:
+
+§§INSTANCE-container-frontend:
+image: heartexlabs/label-studio:1.6.0 # dockerimage + version
+container_name:  §§INSTANCE-myownapp
+restart: unless-stopped
+networks:
+- bibbox-default-network
+links:
+- §§INSTANCE-container2:container2
+ports:
+- "80:80"
+depends_on:
+- §§INSTANCE-labelstudioapp
+volumes: 
+- ./data/container/app-data:/app-data
+proxy:
+TYPE: PRIMARY
+URLPREFIX: §§INSTANCE
+TEMPLATE: default
+DISPLAYNAME: 'MY own APP'  
+§§INSTANCE-labelstudioapp:
+image:  heartexlabs/label-studio:1.6.0
+container_name:  §§INSTANCE-labelstudioapp
+restart: unless-stopped
+networks:
+- bibbox-default-network
+links:
+- §§INSTANCE-app-db:app-db
+ports:
+- "8000:8000"
+depends_on:
+- §§INSTANCE-app-db
+volumes: 
+- ./data/container/app-data:/app-data
+environment:
+- DJANGO_DB=default
+- POSTGRE_NAME=postgres
+- POSTGRE_USER=postgres
+- POSTGRE_PASSWORD=
+- POSTGRE_PORT=5432
+- POSTGRE_HOST=db
+- LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
+- JSON_LOG=1
+
+§§INSTANCE-app-db:
+image: postgres:11.5
+container_name: §§INSTANCE-app-db
+restart: unless-stopped
+networks:
+- bibbox-default-network
+user: root
+environment:
+- POSTGRES_HOST_AUTH_METHOD=trust
+#- MYSQL_ROOT_PASSWORD=myverysecretpassword
+#- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
+#- MYSQL_USER=§§MYSQL_DATABASE_USER
+#- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
+volumes: 
+- ./data/db/var/app-data:/var/app-data
 
