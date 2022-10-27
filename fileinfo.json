@@ -1,0 +1,9 @@
+{
+        "environment_replace": {},
+        "script_replace": [],
+        "permissions": {
+            "PATH1": NUMERIC_VALUE_OF_PERMISSION1,
+        "PATH2": NUMERIC_VALUE_OF_PERMISSION2,
+        "PATH3": NUMERIC_VALUE_OF_PERMISSION3
+        }
+}
