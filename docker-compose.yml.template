@@ -6,37 +6,37 @@
 
     services:
 
-      Â§Â§INSTANCE-container-frontend:
+      §§INSTANCE-container-frontend:
         image: heartexlabs/label-studio:1.6.0 # dockerimage + version
-        container_name:  Â§Â§INSTANCE-myownapp
+        container_name:  §§INSTANCE-myownapp
         restart: unless-stopped
 networks:
           - bibbox-default-network
         links:
-          - Â§Â§INSTANCE-container2:container2
+          - §§INSTANCE-container2:container2
         ports:
           - "80:80"
         depends_on:
-          - Â§Â§INSTANCE-labelstudioapp
+          - §§INSTANCE-labelstudioapp
         volumes: 
           - ./data/container/app-data:/app-data
         proxy:
           TYPE: PRIMARY
-          URLPREFIX: Â§Â§INSTANCE
+          URLPREFIX: §§INSTANCE
           TEMPLATE: default
           DISPLAYNAME: 'MY own APP'  
-	  Â§Â§INSTANCE-labelstudioapp:
+	  §§INSTANCE-labelstudioapp:
 		image:  heartexlabs/label-studio:1.6.0
-		container_name:  Â§Â§INSTANCE-labelstudioapp
+		container_name:  §§INSTANCE-labelstudioapp
         restart: unless-stopped
         networks:
           - bibbox-default-network
         links:
-          - Â§Â§INSTANCE-app-db:app-db
+          - §§INSTANCE-app-db:app-db
         ports:
           - "8000:8000"
         depends_on:
-          - Â§Â§INSTANCE-app-db
+          - §§INSTANCE-app-db
         volumes: 
           - ./data/container/app-data:/app-data
 		 environment:
@@ -49,9 +49,9 @@ networks:
           - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
           - JSON_LOG=1
 
-      Â§Â§INSTANCE-app-db:
+      §§INSTANCE-app-db:
         image: postgres:11.5
-        container_name: Â§Â§INSTANCE-app-db
+        container_name: §§INSTANCE-app-db
         restart: unless-stopped
         networks:
           - bibbox-default-network
@@ -59,9 +59,9 @@ networks:
         environment:
 		  - POSTGRES_HOST_AUTH_METHOD=trust
           #- MYSQL_ROOT_PASSWORD=myverysecretpassword
-          #- MYSQL_DATABASE=Â§Â§MYSQL_DATABASE_NAME
-          #- MYSQL_USER=Â§Â§MYSQL_DATABASE_USER
-          #- MYSQL_PASSWORD=Â§Â§MYSQL_DATABASE_PASSWORD
+          #- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
+          #- MYSQL_USER=§§MYSQL_DATABASE_USER
+          #- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
         volumes: 
           - ./data/db/var/app-data:/var/app-data
 
