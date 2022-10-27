@@ -8,7 +8,7 @@
 
       §§INSTANCE-container-frontend:
 	image: heartexlabs/label-studio:1.6.0 # dockerimage + version
-	container_name:  §§INSTANCE-myownapp
+	container_name:  §§INSTANCE-labelstudio
 	restart: unless-stopped
 	networks:
 	  - bibbox-default-network
@@ -19,12 +19,14 @@
 	depends_on:
 	  - §§INSTANCE-labelstudioapp
         volumes: 
-          - ./data/container/app-data:/app-data
+         # - ./data/container/app-data:/app-data
+	 - ./mydata:/label-studio/data:rw
+         - ./deploy/nginx/certs:/certs:ro
 	proxy:
 	TYPE: PRIMARY
 	URLPREFIX: §§INSTANCE
 	TEMPLATE: default
-	DISPLAYNAME: 'MY own APP'  
+	DISPLAYNAME: 'My own APP'  
         §§INSTANCE-labelstudioapp:
         image:  heartexlabs/label-studio:1.6.0
         container_name:  §§INSTANCE-labelstudioapp
@@ -38,7 +40,9 @@
         depends_on:
           - §§INSTANCE-app-db
 	volumes: 
-	  - ./data/container/app-data:/app-data
+	  #- ./data/container/app-data:/app-data
+	  - ./mydata:/label-studio/data:rw
+      	  - ./deploy/nginx/certs:/certs:ro
 	environment:
 	  - DJANGO_DB=default
 	  - POSTGRE_NAME=postgres
@@ -50,18 +54,21 @@
   	  - JSON_LOG=1
 
   	§§INSTANCE-app-db:
-	image: postgres:11.5
-	container_name: §§INSTANCE-app-db
-	restart: unless-stopped
-	networks:
-	- bibbox-default-network
-	user: root
-	environment:
-  	  - POSTGRES_HOST_AUTH_METHOD=trust
-  	  #- MYSQL_ROOT_PASSWORD=myverysecretpassword
-  	  #- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
-  	  #- MYSQL_USER=§§MYSQL_DATABASE_USER
-  	  #- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
-	volumes:
-  	  - ./data/db/var/app-data:/var/app-data
+	   image: postgres:11.5
+	   container_name: §§INSTANCE-app-db
+	   restart: unless-stopped
+	   networks:
+	     - bibbox-default-network
+	   user: root
+	   environment:
+  	     - POSTGRES_HOST_AUTH_METHOD=trust
+  	     #- MYSQL_ROOT_PASSWORD=myverysecretpassword
+  	     #- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
+  	     #- MYSQL_USER=§§MYSQL_DATABASE_USER
+  	     #- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
+	  volumes:
+	     - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
+             - ./deploy/pgsql/certs:/var/lib/postgresql/certs:ro
+	     #- ./data/db/var/app-data:/var/app-data
+
 
