@@ -1,0 +1,67 @@
+    version: '1.6.0'
+
+    networks:
+        bibbox-default-network:
+          external: true
+
+    services:
+
+      bibbox-labelstudio:
+        image: heartexlabs/label-studio:1.6.0
+        container_name:  bibbox-labelstudio
+        restart: unless-stopped
+        networks:
+          - bibbox-default-network
+        links:
+          - bibbox-container2:container2
+        ports:
+	  - "8080:80"
+          - "8081:443"
+        depends_on:
+          - bibbox-labelstudioapp
+	environment:
+	  - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
+        volumes: 
+	  - ./mydata:/label-studio/data:rw
+          - ./deploy/nginx/certs:/certs:ro
+        
+     bibbox-labelstudioapp:
+	stdin_open: true
+      	tty: true
+      	build: .
+      	image: heartexlabs/label-studio:1.6.0
+      	container_name:  bibbox-labelstudioapp
+      	restart: unless-stopped
+      	networks:
+	  - bibbox-default-network
+      	expose:
+	  - "8080"
+        depends_on:
+          - bibbox-app-db
+        environment:
+          - DJANGO_DB=default
+          - POSTGRE_NAME=postgres
+          - POSTGRE_USER=postgres
+          - POSTGRE_PASSWORD=
+          - POSTGRE_PORT=5432
+          - POSTGRE_HOST=db
+          - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
+          - JSON_LOG=1
+        volumes: 
+          - ./data/container/app-data:/app-data
+        command: label-studio-uwsgi
+
+      bibbox-app-db:
+        image: postgres:11.5
+        container_name: bibbox-labelstudio-db
+        restart: unless-stopped
+        environment:
+	  - POSTGRES_HOST_AUTH_METHOD=trust
+        volumes:
+	  - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
+	  - ./deploy/pgsql/certs:/var/lib/postgresql/certs:ro
+
+  volumes:
+    static: {}
+
+

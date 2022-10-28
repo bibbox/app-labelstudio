@@ -1,10 +1,10 @@
 {
-		"name": "This is my very own APPQ",
-		"short_name": "Catarina's APP",
+		"name": "Label Studio vX.X",
+		"short_name": "Label Studio",
 		"version": "V.1.0",
-		"description": "My APP. My APP My APP My APP My APP My APP My APP My APP My APP My APP My APP My APP My APP",
-        "short_description": "My APP",
-		"catalogue_url": "www.google.com",
-		"application_url": "www.google.com",
-		"tags": ["Personal APP"]
+		"description": "Label Studio is a flexible data annotation tool that supports all your data types",
+        "short_description": "Label Studio is a data annotation tool",
+		"catalogue_url": "",
+		"application_url": "https://labelstud.io/",
+		"tags": ["data annotation tool"]
 }

@@ -1,4 +1,4 @@
-    version: '1'
+    version: '1.6.0'
 
     networks:
         bibbox-default-network:
@@ -6,43 +6,38 @@
 
     services:
 
-      §§INSTANCE-container-frontend:
-	image: heartexlabs/label-studio:1.6.0 # dockerimage + version
-	container_name:  §§INSTANCE-labelstudio
-	restart: unless-stopped
-	networks:
-	  - bibbox-default-network
-	links:
-          - §§INSTANCE-container2:container2
-	ports:
-	  - "80:80"
-	depends_on:
-	  - §§INSTANCE-labelstudioapp
-        volumes: 
-         # - ./data/container/app-data:/app-data
-	 - ./mydata:/label-studio/data:rw
-         - ./deploy/nginx/certs:/certs:ro
-	proxy:
-	TYPE: PRIMARY
-	URLPREFIX: §§INSTANCE
-	TEMPLATE: default
-	DISPLAYNAME: 'My own APP'  
-        §§INSTANCE-labelstudioapp:
-        image:  heartexlabs/label-studio:1.6.0
-        container_name:  §§INSTANCE-labelstudioapp
+      Â§Â§INSTANCE-labelstudio:
+        image: heartexlabs/label-studio:1.6.0 # dockerimage + version
+        container_name:  Â§Â§INSTANCE-labelstudio
         restart: unless-stopped
         networks:
           - bibbox-default-network
         links:
-          - §§INSTANCE-app-db:app-db
+          - Â§Â§INSTANCE-container2:container2 # INSTANCE-labelstudio:container2:?
         ports:
-          - "8000:8000"
+          - "8080:80"
+	  - "8081:443"
         depends_on:
-          - §§INSTANCE-app-db
-	volumes: 
-	  #- ./data/container/app-data:/app-data
+          - Â§Â§INSTANCE-labelstudioapp  # defined below
+	environment:
+	  - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
+        volumes: 
 	  - ./mydata:/label-studio/data:rw
-      	  - ./deploy/nginx/certs:/certs:ro
+          - ./deploy/nginx/certs:/certs:ro
+
+    Â§Â§INSTANCE-labelstudioapp:
+      stdin_open: true
+      tty: true
+      build: 
+      image: heartexlabs/label-studio:1.6.0
+      container_name:  Â§Â§INSTANCE-labelstudioapp
+      restart: unless-stopped
+      networks:
+        - bibbox-default-network
+      expose:
+        - "8080"
+      depends_on:
+          - Â§Â§INSTANCE-app-db
 	environment:
 	  - DJANGO_DB=default
 	  - POSTGRE_NAME=postgres
@@ -52,23 +47,24 @@
 	  - POSTGRE_HOST=db
   	  - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
   	  - JSON_LOG=1
-
-  	§§INSTANCE-app-db:
-	   image: postgres:11.5
-	   container_name: §§INSTANCE-app-db
-	   restart: unless-stopped
-	   networks:
-	     - bibbox-default-network
-	   user: root
-	   environment:
-  	     - POSTGRES_HOST_AUTH_METHOD=trust
-  	     #- MYSQL_ROOT_PASSWORD=myverysecretpassword
-  	     #- MYSQL_DATABASE=§§MYSQL_DATABASE_NAME
-  	     #- MYSQL_USER=§§MYSQL_DATABASE_USER
-  	     #- MYSQL_PASSWORD=§§MYSQL_DATABASE_PASSWORD
-	  volumes:
-	     - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
-             - ./deploy/pgsql/certs:/var/lib/postgresql/certs:ro
-	     #- ./data/db/var/app-data:/var/app-data
+        volumes: 
+	  - ./mydata:/label-studio/data:rw
+      	  - ./deploy/nginx/certs:/certs:ro
+	command: label-studio-uwsgi
 
 
+      Â§Â§INSTANCE-app-db:
+        image: postgres:11.5
+        container_name: Â§Â§INSTANCE-app-db
+        restart: unless-stopped
+        networks:
+          - bibbox-default-network
+        user: root
+        environment:
+	  - POSTGRES_HOST_AUTH_METHOD=trust
+        volumes: 
+	  - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/data
+          - ./deploy/pgsql/certs:/var/lib/postgresql/certs:ro
+
+  volumes:
+    static: {}
