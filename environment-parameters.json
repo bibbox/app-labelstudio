@@ -1,16 +1,24 @@
 [
+#{
+#   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+#   "contentVersion": "1.0.0.0",
+#   "parameters": {
+#      "hostingPlanName": {
+#         "value": "GEN-UNIQUE"
+#      },
+#      "appName": {
+#         "value": "GEN-UNIQUE"
+#      }
+#   }
+#}
 {
-   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-   "contentVersion": "1.0.0.0",
-   "parameters": {
-      "hostingPlanName": {
-         "value": "GEN-UNIQUE"
-      },
-      "appName": {
-         "value": "GEN-UNIQUE"
-      }
-   }
-}
-   
+    "id":"PASSWORD",
+    "display_name":"Password",
+    "type":"text",
+    "default_value":"admin",
+    "description":"Please set a password",
+    "min_length": "1",
+    "max_length": "128"
+}  
 
 ]
