@@ -40,17 +40,17 @@ services:
         depends_on:
           - §§INSTANCE-app-db
         environment:
-	      - DJANGO_DB=default
-	      - POSTGRE_NAME=postgres
-	      - POSTGRE_USER=postgres
-	      - POSTGRE_PASSWORD=
-	      - POSTGRE_PORT=5432
-	      - POSTGRE_HOST=db
-  	      - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
-  	      - JSON_LOG=1
+          - DJANGO_DB=default
+          - POSTGRE_NAME=postgres
+          - POSTGRE_USER=postgres
+          - POSTGRE_PASSWORD=
+          - POSTGRE_PORT=5432
+          - POSTGRE_HOST=db
+          - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
+          - JSON_LOG=1
         volumes: 
-	      - ./data/mydata:/label-studio/data:rw
-      	  - ./data/deploy/nginx/certs:/certs:ro
+          - ./data/mydata:/label-studio/data:rw
+          - ./data/deploy/nginx/certs:/certs:ro
         command: label-studio-uwsgi
 
 
@@ -60,10 +60,10 @@ services:
         restart: unless-stopped
         user: root
         environment:
-	      - POSTGRES_HOST_AUTH_METHOD=trust
-	      - PGDATA=/var/lib/postgresql/data/mydata
+          - POSTGRES_HOST_AUTH_METHOD=trust
+          - PGDATA=/var/lib/postgresql/data/mydata
         volumes: 
-	      - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/mydata:z
+          - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/mydata:z
           - ./data/deploy/pgsql/certs:/var/lib/postgresql/certs:ro
         networks:
           - bibbox-default-network 
