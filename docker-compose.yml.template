@@ -25,7 +25,7 @@ services:
           - ./data/mydata:/label-studio/data:rw
           - ./data/deploy/nginx/certs:/certs:ro
         command: nginx
-		proxy:
+        proxy:
           TYPE: PRIMARY
           URLPREFIX: §§INSTANCE
           TEMPLATE: default
