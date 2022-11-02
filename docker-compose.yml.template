@@ -48,7 +48,7 @@ services:
           - DJANGO_DB=default
           - POSTGRE_NAME=postgres
           - POSTGRE_USER=postgres
-          - POSTGRE_PASSWORD=
+          - POSTGRE_PASSWORD=§§POSTGRE_PASSWORD
           - POSTGRE_PORT=5432
           - POSTGRE_HOST=db
           - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
@@ -67,6 +67,7 @@ services:
         environment:
           - POSTGRES_HOST_AUTH_METHOD=trust
           - PGDATA=/var/lib/postgresql/data/mydata
+          - POSTGRES_PASSWORD=§§POSTGRE_PASSWORD
         volumes: 
           - ${POSTGRES_DATA_DIR:-./postgres-data}:/var/lib/postgresql/mydata:z
           - ./data/deploy/pgsql/certs:/var/lib/postgresql/certs:ro
