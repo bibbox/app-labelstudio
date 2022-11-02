@@ -1,10 +1,10 @@
 {
-		"name": "Label Studio v1.6.0",
-		"short_name": "Label Studio",
-		"version": "V.1.6.0",
-		"description": "Label Studio is a flexible data annotation tool that supports all your data types",
-        "short_description": "Label Studio is a data annotation tool",
-		"catalogue_url": "",
-		"application_url": "https://labelstud.io/",
-		"tags": ["data annotation tool"]
+   "name": "Label Studio v1.6.0",
+   "short_name": "Label Studio",
+   "version": "V.1.6.0",
+   "description": "Label Studio is a flexible data annotation tool that supports all your data types",
+   "short_description": "Label Studio is a data annotation tool",
+   "catalogue_url": "",
+   "application_url": "https://labelstud.io/",
+   "tags": ["data annotation tool"]
 }

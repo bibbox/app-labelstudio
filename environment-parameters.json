@@ -1,12 +1,3 @@
 [
-{
-    "id":"PASSWORD",
-    "display_name":"Password",
-    "type":"text",
-    "default_value":"admin",
-    "description":"Please set a password",
-    "min_length": "1",
-    "max_length": "128"
-}  
 
 ]
