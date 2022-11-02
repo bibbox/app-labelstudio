@@ -22,8 +22,8 @@ services:
         environment:
           - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
         volumes: 
-          - ./dataglobal/mydata:/label-studio/data:rw
-          - ./dataglobal/deploy/nginx/certs:/certs:ro
+          - ./data/mydata:/label-studio/data:rw
+          - ./data/deploy/nginx/certs:/certs:ro
         command: nginx
         
     bibbox-labelstudioapp:
@@ -51,7 +51,7 @@ services:
           - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
           - JSON_LOG=1
         volumes: 
-          - ./dataglobal/data/container/app-data:/app-data
+          - ./data/data/container/app-data:/app-data
         command: label-studio-uwsgi
 
         image: postgres:11.5
@@ -68,8 +68,8 @@ services:
           - POSTGRES_HOST_AUTH_METHOD=trust
           - PGDATA=/var/lib/postgresql/data/mydata
         volumes:
-          - ./dataglobal/postgres-data:/var/lib/postgresql/mydata:z
-          - ./dataglobal/deploy/pgsql/certs:/var/lib/postgresql/certs:ro
+          - ./data/postgres-data:/var/lib/postgresql/mydata:z
+          - ./data/deploy/pgsql/certs:/var/lib/postgresql/certs:ro
         networks:
           - bibbox-default-network
 
