@@ -25,6 +25,11 @@ services:
           - ./data/mydata:/label-studio/data:rw
           - ./data/deploy/nginx/certs:/certs:ro
         command: nginx
+		proxy:
+          TYPE: PRIMARY
+          URLPREFIX: §§INSTANCE
+          TEMPLATE: default
+          DISPLAYNAME: 'Label Studio'  
 
     §§INSTANCE-labelstudioapp:
         stdin_open: true
