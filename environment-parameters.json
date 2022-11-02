@@ -3,7 +3,7 @@
       "id": "POSTGRE_PASSWORD",
       "display_name":"Password for postgre database",
       "type":"text",
-      "default_value":"password",
+      "default_value":"",
       "description":"User's password",
       "min_length": "1",
       "max_length": "128"
