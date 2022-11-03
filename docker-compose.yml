@@ -40,7 +40,7 @@ services:
         expose:
           - "8080"
         depends_on:
-          - db
+          - bibbox-db
         environment:
           - DJANGO_DB=default
           - POSTGRE_NAME=postgres
@@ -54,6 +54,7 @@ services:
           - ./data/data/container/app-data:/app-data
         command: label-studio-uwsgi
 
+    bibbox-db:
         image: postgres:11.5
         hostname: db
         restart: always

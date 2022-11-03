@@ -6,7 +6,7 @@ networks:
 
 services:
 
-    §§INSTANCE-labelstudio-ngirx:
+    §§INSTANCE-labelstudio-nginx:
         image: heartexlabs/label-studio:1.6.0 # dockerimage + version
         container_name:  §§INSTANCE-labelstudio-nginx
         restart: unless-stopped

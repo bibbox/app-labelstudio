@@ -1,4 +1,4 @@
-# Template BIBBOX application
+# Label Studio BIBBOX application
 
 This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") or standalone.
  
@@ -33,16 +33,16 @@ The default values for the standalone installation are:
 ## Docker Images Used
 
  * [BIBBOX/imagename](https://hub.docker.com/r/bibbox/imagename) 
- * [mySQL](https://hub.docker.com/_/mysql/), offical mySQL container
+ * [postgres](https://hub.docker.com/_/postgres, offical postgres container
  
 ## Standalone Installation
 
 To install the app locally execute the commands:
 
 * Clone the git repository: 
-  * `git clone https://github.com/bibbox/app-template.git`
+  * `git clone https://github.com/bibbox/app-labelstudio.git`
 * Change the current directory to app-template: 
-  * `cd app-molgenis/` 
+  * `cd app-labelstudio/` 
 * Create the directories `PATH1`, `PATH2` and `PATH3`:
   * `mkdir -p PATH1` 
   * `mkdir -p PATH2`
