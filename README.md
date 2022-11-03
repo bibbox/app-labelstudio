@@ -15,25 +15,18 @@ Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ 
 
 ### Install Environment Variables
 
-List of environment parameters set during installation
-
- * NAME_AS_IN_DOCKER_TEMPLATE_1: ...
- * MYSQL_DATABASE_NAME: ...
- * MYSQL_DATABASE_USER: ...
- * MYSQL_DATABASE_PASSWORD: ...
+ * POSTGRES_DATABASE_NAME: ...
+ 
 
 The default values for the standalone installation are:
-
- * NAME_AS_IN_DOCKER_TEMPLATE_1: Default Value
- * MYSQL_DATABASE_NAME: Default Value
- * MYSQL_DATABASE_USER: Default Value
- * MYSQL_DATABASE_PASSWORD: Default Value
+????????????????????
 
 
 ## Docker Images Used
 
  * [BIBBOX/imagename](https://hub.docker.com/r/bibbox/imagename) 
  * [postgres](https://hub.docker.com/_/postgres, offical postgres container
+ * [labelstudio] https://hub.docker.com/r/heartexlabs/label-studio, oficial labelstudio docker image
  
 ## Standalone Installation
 
@@ -43,22 +36,23 @@ To install the app locally execute the commands:
   * `git clone https://github.com/bibbox/app-labelstudio.git`
 * Change the current directory to app-template: 
   * `cd app-labelstudio/` 
-* Create the directories `PATH1`, `PATH2` and `PATH3`:
+* Create the directories `PATH1`, `PATH2` and `PATH3`: ???????????
   * `mkdir -p PATH1` 
   * `mkdir -p PATH2`
   * `mkdir -p PATH3`
 * Change the permission of the directories `PATH1`, `PATH2` and `PATH3`: 
-  * `chmod -R NUMERIC_VALUE_OF_PERMISSION1 PATH1`
-  * `chmod -R NUMERIC_VALUE_OF_PERMISSION2 PATH2`
-  * `chmod -R NUMERIC_VALUE_OF_PERMISSION3 PATH3`
+  * `chmod -R NUMERIC_VALUE_OF_PERMISSION1 PATH1` ?????????????
+
 * Create the docker network `bibbox-default-network`: 
   * `docker network create bibbox-default-network`
 * Run **docker-compose up** in the root folder of the project: 
   * `docker-compose up -d`
-* **Alternatively** on a *Linux* system run the bash script `intsall.sh` after cloning and change the working directory to the git repository directory.
+* **Alternatively** on a *Linux* system run the bash script `install.sh` after cloning and change the working directory to the git repository directory.
 
 ## Mounted Volumes
 
-* `PATH1`
-* `PATH2`
-* `PATH3`
+* /data/container/app-data
+* /data/deploy/nginx
+* /data/deploy/pgsql
+* /data/mydata
+* /data/postgres-data

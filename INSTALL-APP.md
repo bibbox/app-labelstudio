@@ -1,28 +1,20 @@
 ## APP Installation Instructions 
 
-## Install Parameters
+When installing the APP you are asked to set an:
+Application ID, Application Name, Password for postgre database.
 
-List of environment parameters set during installation
+All these can be chosen by you but should not be exclusively numeric values. 
 
-* NAME_AS_IN_DOCKER_TEMPLATE_1: ...
-* MYSQL_DATABASE_NAME: ...
-* MYSQL_DATABASE_USER: ...
-* MYSQL_DATABASE_PASSWORD: ...
-
-## Populate the Database
-
-## Login
-
-* user: ...
-* password: ....
-
-Please change the password. 
-
-
-
+The installation takes a few minutes. 
 
 ## After the installation
 
-Have a nice ride with the new Admins youngtimer.
+If the following message appears when opening the APP
+![Screenshot01](screenshots/openpageerror.png)
 
-![FINAL](assets/install-screen-final.jpg)
+Please wait some minutes before reloading the page.
+The correct screen should then be the following
+
+![Screenshot01](screenshots/openpage.png)
+
+
