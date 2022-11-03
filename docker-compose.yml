@@ -35,8 +35,8 @@ services:
         restart: unless-stopped
         networks:
           - bibbox-default-network
-        #links:
-        #  - bibbox-app-db:db
+        links:
+          - bibbox-db:db
         expose:
           - "8080"
         depends_on:

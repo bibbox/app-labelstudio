@@ -52,6 +52,8 @@ services:
           - POSTGRE_HOST=db
           - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
           - JSON_LOG=1
+		links:
+          - §§INSTANCE-db:db		
         volumes: 
           - ./data/mydata:/label-studio/data:rw
           - ./data/deploy/nginx/certs:/certs:ro
