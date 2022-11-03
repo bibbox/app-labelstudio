@@ -34,7 +34,6 @@ services:
     §§INSTANCE-labelstudioapp:
         stdin_open: true
         tty: true
-        build: 
         image: heartexlabs/label-studio:1.6.0
         container_name:  §§INSTANCE-labelstudioapp
         restart: unless-stopped
@@ -43,7 +42,7 @@ services:
         expose:
           - "8080"
         depends_on:
-          - §§INSTANCE-app-db
+          - §§INSTANCE-db
         environment:
           - DJANGO_DB=default
           - POSTGRE_NAME=postgres
