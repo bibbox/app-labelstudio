@@ -18,4 +18,6 @@ The correct page should then appear.
 
 ![Screenshot01](screenshots/openpage.png)
 
+At the sign up tab, you can create your own account (email/password).
+
 
