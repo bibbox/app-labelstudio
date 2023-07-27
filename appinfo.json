@@ -6,5 +6,6 @@
    "short_description": "Label Studio is a data annotation tool",
    "catalogue_url": "",
    "application_url": "https://labelstud.io/",
-   "tags": ["data annotation tool"]
+   "tags": ["data annotation tool"],
+   "application_documentation_url": "https://labelstud.io/guide/get_started.html#Quick-start"
 }
