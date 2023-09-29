@@ -40,12 +40,12 @@ The default values for the standalone installation are:
 
   
 ## Mounted Volumes
-### heartexlabs/label-studio Conatiner
+### heartexlabs/label-studio Container
   - *./data/mydata:/label-studio/data:rw*
   - *./data/deploy/nginx/certs:/certs:ro*
-### heartexlabs/label-studio Conatiner
+### heartexlabs/label-studio Container
   - *./data/data/container/app-data:/app-data*
-### postgres Conatiner
+### postgres Container
   - *./data/postgres-data:/var/lib/postgresql/mydata:z*
   - *./data/deploy/pgsql/certs:/var/lib/postgresql/certs:ro*
 
