@@ -7,7 +7,7 @@ networks:
 services:
 
     §§INSTANCE-labelstudio-nginx:
-        image: heartexlabs/label-studio:1.6.0 # dockerimage + version
+        image: heartexlabs/label-studio:1.9.0 # dockerimage + version
         container_name:  §§INSTANCE-labelstudio-nginx
         restart: unless-stopped
         networks:
@@ -15,8 +15,8 @@ services:
         links:
           - §§INSTANCE-labelstudioapp:app 
         ports:
-          - "8080:80"
-          - "8081:443"
+          - "8080:8085"
+          - "8081:8086"
         depends_on:
           - §§INSTANCE-labelstudioapp 
         environment:
@@ -34,7 +34,7 @@ services:
     §§INSTANCE-labelstudioapp:
         stdin_open: true
         tty: true
-        image: heartexlabs/label-studio:1.6.0
+        image: heartexlabs/label-studio:1.9.0
         container_name:  §§INSTANCE-labelstudioapp
         restart: unless-stopped
         networks:

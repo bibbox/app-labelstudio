@@ -7,7 +7,7 @@ networks:
 services:
 
     bibbox-labelstudio-nginx:
-        image: heartexlabs/label-studio:1.6.0
+        image: heartexlabs/label-studio:1.9.0
         container_name:  bibbox-labelstudio-nginx
         restart: unless-stopped
         networks:
@@ -15,8 +15,8 @@ services:
         links:
           -  bibbox-labelstudioapp:app
         ports:
-          - "8080:80"
-          - "8081:443"
+          - "8080:8085"
+          - "8081:8086"
         depends_on:
           - bibbox-labelstudioapp
         environment:
@@ -30,7 +30,7 @@ services:
         stdin_open: true
         tty: true
            # build: .
-        image: heartexlabs/label-studio:1.6.0
+        image: heartexlabs/label-studio:1.9.0
         container_name:  bibbox-labelstudioapp
         restart: unless-stopped
         networks:
