@@ -1,50 +1,51 @@
-# Label Studio BIBBOX application
+# labelstudio BIBBOX application
 
-This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") or standalone.
- 
-After the installation follow these [instructions](INSTALL-APP.md)
+This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX App Store") or standalone. 
 
-## Hints
+After the docker installation follow these [instructions](INSTALL-APP.md).
 
-* approx. time with medium fast internet connection: **5 minutes**
+## Standalone Installation 
+
+Clone the github repository. If necessary change the ports in the environment file `.env` and the volume mounts in `docker-compose.yml`.
+
+```
+git clone https://github.com/bibbox/app-labelstudio
+cd app-labelstudio
+docker network create bibbox-default-network
+docker-compose up -d
+```
+
+The main App can be opened and set up at:
+```
+http://localhost:8080
+```
 
 ## Install within BIBBOX
 
-Within BIBBOX you can use the [BIBBOX](https://bibbox.readthedocs.io/en/latest/ "BIBBOX") to install a lot of software tools. After the installation is finished you can start your application in the dashboard.
+Visit the BIBBOX page and find the App by its name in the store. Click on the symbol and select install. Then fill the parameters below and name your App, click install again.
 
-### Install Environment Variables
+## Docker Images used
+  - [heartexlabs/label-studio](https://hub.docker.com/r/heartexlabs/label-studio) 
+  - [heartexlabs/label-studio](https://hub.docker.com/r/heartexlabs/label-studio) 
+  - [postgres](https://hub.docker.com/r/postgres) 
 
- * POSTGRE_PASSWORD: POSTGRES database password
+
  
+## Install Environment Variables
+  - POSTGRE_PASSWORD = User's password
 
-
-
-## Docker Images Used
-
- * [postgres](https://hub.docker.com/_/postgres, offical postgres container
- * [labelstudio] https://hub.docker.com/r/heartexlabs/label-studio, oficial labelstudio docker image
- 
-## Standalone Installation
-
-To install the app locally execute the commands:
-
-* Clone the git repository: 
-  * `git clone https://github.com/bibbox/app-labelstudio.git`
-* Change the current directory to app-labelstudio: 
-  * `cd app-labelstudio/` 
-* Create the directories `PATH1`, `PATH2` and `PATH3`: 
-  * `mkdir -p data` 
   
+The default values for the standalone installation are:
+  - POSTGRE_PASSWORD = changethispasswordinproductionenvironments
 
-* Create the docker network `bibbox-default-network`: 
-  * `docker network create bibbox-default-network`
-* Run **docker-compose up** in the root folder of the project: 
-  * `docker-compose up -d`
-
+  
 ## Mounted Volumes
+### heartexlabs/label-studio Container
+  - *./data/mydata:/label-studio/data:rw*
+  - *./data/deploy/nginx/certs:/certs:ro*
+### heartexlabs/label-studio Container
+  - *./data/data/container/app-data:/app-data*
+### postgres Container
+  - *./data/postgres-data:/var/lib/postgresql/mydata:z*
+  - *./data/deploy/pgsql/certs:/var/lib/postgresql/certs:ro*
 
-* /data/data/container/app-data
-* /data/deploy/nginx
-* /data/deploy/pgsql
-* /data/mydata
-* /data/postgres-data
