@@ -7,5 +7,6 @@
    "catalogue_url": "",
    "application_url": "https://labelstud.io/",
    "tags": ["data annotation tool"],
-   "application_documentation_url": "https://labelstud.io/guide/get_started.html#Quick-start"
+   "application_documentation_url": "https://labelstud.io/guide/get_started.html#Quick-start",
+   "instance_information": "work in progress"
 }
