@@ -8,5 +8,5 @@
    "application_url": "https://labelstud.io/",
    "tags": ["data annotation tool"],
    "application_documentation_url": "https://labelstud.io/guide/get_started.html#Quick-start",
-   "instance_information": "work in progress"
+   "instance_information": "<p> Label Studio is a flexible data labeling platform to fine-tune LLMs, prepare training data or validate AI models. </p>"
 }
