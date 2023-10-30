@@ -4,7 +4,7 @@
       "display_name":"Password for postgre database",
       "type":"text",
       "default_value":"changethispasswordinproductionenvironments",
-      "description":"User's password",
+      "description":"Choose your user password",
       "min_length": "1",
       "max_length": "128"
    }
